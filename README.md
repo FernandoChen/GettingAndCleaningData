@@ -26,6 +26,8 @@ either time or frequency, axis of the measurement -if exists, and the aggregate 
 Once I figured out how I wanted to reshape the data, I applied functions in the "tidyr" package and reached a final dataset consisting of 7 variables and 
 11880 observations.
 
+Comments have been added to the run_analysis.R script to document the steps if the above explanation is not clear enough.
+
 The seven variables are activity, subject, component, measurement, aggregate, axis, and mean(reading). Since there are 30 subject, 6 activities, and I am
 watching 66 variables, I find the result 11880 observations consistent with 30*6*66 = 11880
 

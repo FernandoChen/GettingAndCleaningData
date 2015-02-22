@@ -52,23 +52,25 @@ df <- merge(activities, d, by.x="activityid", by.y="activityid", sort=FALSE)
 
 df <- df[, !(names(df) %in% c("activityid"))]
 
-#4.done
 
-#5
+#5. Loads dplyr and tidyr
 
 library(dplyr)
 library(tidyr)
 
+# move the valeus to a single variable, then separate the variable into 4 variables -component, measure, aggregate and axis.
 dfx <- df %>% 
   gather(component_measurement_aggregate_axis, reading, -activity, -subject) %>%
   mutate(component_measurement_aggregate_axis = sub("^t", "t_", component_measurement_aggregate_axis)) %>%
   mutate(component_measurement_aggregate_axis = sub("^f", "f_", component_measurement_aggregate_axis)) %>%
   separate(col=component_measurement_aggregate_axis, c("component", "measurement", "aggregate", "axis"))
 
-str(dfx)
 
+#group the records byactivity, subject, component, measurement, aggregate and axis
+# and then calculate the average
 dfx_grouped <- group_by(dfx,activity, subject, component, measurement, aggregate, axis)
 dfy <- summarize(dfx_grouped, mean(reading))
-str(dfy)
+
+#output the result to a file using write.table
 
 write.table(dfy, file = "courseproject_tidydataset.txt", row.names=FALSE)

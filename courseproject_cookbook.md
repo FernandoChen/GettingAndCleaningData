@@ -21,4 +21,6 @@ Axis
 Mean(Reading)
 	This is the aveage applied to the records grouped by Activity, Subject, Component, Measurement, Aggregate,and Axis, as I understand it to be.
 	
+The resulting dataset has 11880 observations.
+	
 	
